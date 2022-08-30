@@ -41,10 +41,10 @@ Parameters:
     Type: String
     Description: GitHub UserName. This username must have access to the GitHubToken.
     Default: blendisb
-  GitHubToken:
-    NoEcho: true
-    Type: String
-    Default: !GetAtt github-oauth-token.Arn
+  # GitHubToken:
+  #   NoEcho: true
+  #   Type: String
+  #   Default: !GetAtt github-oauth-token.Arn
   MainGitBranch:
     Type: String
     Default: "main"
@@ -190,7 +190,7 @@ Resources:
                 # BranchName: !If [IsFeatureBranchPipeline, !Ref FeatureGitBranch, !Ref MainGitBranch]
                   Repo: !Ref GitHubRepoName
                   Branch: !Ref MainGitBranch
-                  OAuthToken: !Ref GitHubToken
+                  OAuthToken: !GetAtt github-oauth-token.Arn
                   Owner: !Ref GitHubUser
               OutputArtifacts:
                 - Name: SourceCodeAsZip
