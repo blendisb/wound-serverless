@@ -190,7 +190,7 @@ Resources:
                 # BranchName: !If [IsFeatureBranchPipeline, !Ref FeatureGitBranch, !Ref MainGitBranch]
                   Repo: !Ref GitHubRepoName
                   Branch: !Ref MainGitBranch
-                  OAuthToken: !Ref arn:aws:secretsmanager:us-east-1:925847343022:secret:github-oauth-token-jWDfC9
+                  OAuthToken: arn:aws:secretsmanager:us-east-1:925847343022:secret:github-oauth-token-jWDfC9
                   Owner: !Ref GitHubUser
               OutputArtifacts:
                 - Name: SourceCodeAsZip
