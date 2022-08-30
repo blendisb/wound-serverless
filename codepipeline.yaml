@@ -44,7 +44,7 @@ Parameters:
   GitHubToken:
     NoEcho: true
     Type: String
-    Default: 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
+    Default: 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
   MainGitBranch:
     Type: String
     Default: "main"
