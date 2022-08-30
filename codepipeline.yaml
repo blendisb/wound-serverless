@@ -100,6 +100,10 @@ Parameters:
   FeatureGitBranch:
     Type: String
     Default: ""
+  SecretsToken: 
+    Description: GitHub Token
+    Type: "AWS::SecretsManager::Secret::Value<String>"
+    Default: "{{resolve:secretsmanager:arn:aws:secretsmanager:us-east-1:925847343022:secret:github-oauth-token-jWDfC9:SecretString}}"
 
 Conditions:
   IsMainBranchPipeline: !Equals [!Ref FeatureGitBranch, ""]
@@ -190,7 +194,7 @@ Resources:
                 # BranchName: !If [IsFeatureBranchPipeline, !Ref FeatureGitBranch, !Ref MainGitBranch]
                   Repo: !Ref GitHubRepoName
                   Branch: !Ref MainGitBranch
-                  OAuthToken: '{{resolve:secretsmanager:arn:aws:secretsmanager:us-east-1:925847343022:secret:github-oauth-token-jWDfC9:SecretString}}'
+                  OAuthToken: !Ref SecretsToken
                   Owner: !Ref GitHubUser
               OutputArtifacts:
                 - Name: SourceCodeAsZip
